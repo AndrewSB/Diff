@@ -10,6 +10,7 @@
 		4620E66E1DB408A500405771 /* Diff.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4620E6641DB408A500405771 /* Diff.framework */; };
 		4620E6731DB408A500405771 /* DiffTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4620E6721DB408A500405771 /* DiffTests.swift */; };
 		4620E67F1DB408AF00405771 /* Diff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4620E67E1DB408AF00405771 /* Diff.swift */; };
+		469F88ED1DB40AE60061C409 /* EditDistance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469F88EC1DB40AE60061C409 /* EditDistance.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +30,8 @@
 		4620E6721DB408A500405771 /* DiffTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffTests.swift; sourceTree = "<group>"; };
 		4620E6741DB408A500405771 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4620E67E1DB408AF00405771 /* Diff.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Diff.swift; sourceTree = "<group>"; };
+		469F88EB1DB40ADF0061C409 /* Diff.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Diff.playground; sourceTree = "<group>"; };
+		469F88EC1DB40AE60061C409 /* EditDistance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditDistance.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +56,7 @@
 		4620E65A1DB408A500405771 = {
 			isa = PBXGroup;
 			children = (
+				469F88EB1DB40ADF0061C409 /* Diff.playground */,
 				4620E6661DB408A500405771 /* Diff */,
 				4620E6711DB408A500405771 /* DiffTests */,
 				4620E6651DB408A500405771 /* Products */,
@@ -72,6 +76,7 @@
 			isa = PBXGroup;
 			children = (
 				4620E67E1DB408AF00405771 /* Diff.swift */,
+				469F88EC1DB40AE60061C409 /* EditDistance.swift */,
 				4620E6681DB408A500405771 /* Info.plist */,
 			);
 			path = Diff;
@@ -196,6 +201,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				469F88ED1DB40AE60061C409 /* EditDistance.swift in Sources */,
 				4620E67F1DB408AF00405771 /* Diff.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -400,6 +406,7 @@
 				4620E67A1DB408A500405771 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4620E67B1DB408A500405771 /* Build configuration list for PBXNativeTarget "DiffTests" */ = {
 			isa = XCConfigurationList;
@@ -408,6 +415,7 @@
 				4620E67D1DB408A500405771 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
