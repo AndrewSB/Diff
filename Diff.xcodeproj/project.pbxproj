@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		46204A4F1DB949C90008F069 /* Collection + SafeIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46204A4E1DB949C90008F069 /* Collection + SafeIndex.swift */; };
 		4620E66E1DB408A500405771 /* Diff.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4620E6641DB408A500405771 /* Diff.framework */; };
 		4620E6731DB408A500405771 /* DiffTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4620E6721DB408A500405771 /* DiffTests.swift */; };
 		4620E67F1DB408AF00405771 /* Diff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4620E67E1DB408AF00405771 /* Diff.swift */; };
@@ -24,6 +25,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		46204A4E1DB949C90008F069 /* Collection + SafeIndex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Collection + SafeIndex.swift"; sourceTree = "<group>"; };
 		4620E6641DB408A500405771 /* Diff.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Diff.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4620E6681DB408A500405771 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4620E66D1DB408A500405771 /* DiffTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DiffTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -77,6 +79,7 @@
 			children = (
 				4620E67E1DB408AF00405771 /* Diff.swift */,
 				469F88EC1DB40AE60061C409 /* Edit.swift */,
+				46204A4E1DB949C90008F069 /* Collection + SafeIndex.swift */,
 				4620E6681DB408A500405771 /* Info.plist */,
 			);
 			path = Diff;
@@ -201,6 +204,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				46204A4F1DB949C90008F069 /* Collection + SafeIndex.swift in Sources */,
 				469F88ED1DB40AE60061C409 /* Edit.swift in Sources */,
 				4620E67F1DB408AF00405771 /* Diff.swift in Sources */,
 			);
