@@ -1,8 +1,12 @@
 import Foundation
 
+/// TODO: When this is moved out of the playground, this should be an internal type for the Diff module, NOT PUBLIC
+
+
 /**
- TODO:
-    When this is moved out of the playground, this should be an internal type for the Diff module, NOT PUBLIC
+ A reference either points to:
+    1. An element on the symbol table
+    2. An index of the other collection
  */
 public enum Reference<T: Collection> where T.Iterator.Element: Equatable, T.IndexDistance == Int {
     public typealias Index = Int
