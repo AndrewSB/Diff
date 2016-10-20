@@ -22,9 +22,9 @@ func diff<T: Collection>(old: T, new: T) -> [Edit<T>] where T.Iterator.Element: 
     new.forEach {
         switch symbolTable[$0] {
         case .none:
-            symbolTable[$0] = Entry(oldCounter: 0, newCounter: 1, oldIndicies: [])
+            symbolTable[$0] = Entry(occurrencesInOld: 0, occurrencesInNew: 1, indicesOfOccurrencesInOld: [])
         case .some(let entry):
-            symbolTable[$0] = Entry(oldCounter: entry.oldCounter, newCounter: entry.newCounter + 1, oldIndicies: entry.oldIndicies)
+            symbolTable[$0] = Entry(occurrencesInOld: entry.occurrencesInOld, occurrencesInNew: entry.occurrencesInNew + 1, indicesOfOccurrencesInOld: entry.indicesOfOccurrencesInOld)
         }
         newReferences.append(.pointer(counter))
         counter += 1
@@ -36,9 +36,9 @@ func diff<T: Collection>(old: T, new: T) -> [Edit<T>] where T.Iterator.Element: 
     old.forEach {
         switch symbolTable[$0] {
         case .none:
-            symbolTable[$0] = Entry(oldCounter: 1, newCounter: 0, oldIndicies: [counter])
+            symbolTable[$0] = Entry(occurrencesInOld: 1, occurrencesInNew: 0, indicesOfOccurrencesInOld: [counter])
         case .some(let value):
-            symbolTable[$0] = Entry(oldCounter: value.oldCounter + 1, newCounter: value.newCounter, oldIndicies: value.oldIndicies + [counter])
+            symbolTable[$0] = Entry(occurrencesInOld: value.occurrencesInOld + 1, occurrencesInNew: value.occurrencesInNew, indicesOfOccurrencesInOld: value.indicesOfOccurrencesInOld + [counter])
         }
         oldReferences.append(.pointer(counter))
         counter += 1
@@ -48,15 +48,28 @@ func diff<T: Collection>(old: T, new: T) -> [Edit<T>] where T.Iterator.Element: 
     counter = 0
     new.forEach {
         let symbol = symbolTable[$0]!
-        if symbol.oldCounter == 1 && symbol.newCounter == 1 {
-            newReferences[counter] = .line(symbol.oldIndicies[0])
-            oldReferences[counter] = .line(counter)
+        if symbol.occurrencesInOld == 1 && symbol.occurrencesInNew == 1 {
+            newReferences[counter] = .line(symbol.indicesOfOccurrencesInOld.first!)
+            oldReferences[symbol.indicesOfOccurrencesInOld.first!] = .line(counter)
         }
         counter += 1
     }
     
     // step 4, uses assumption 2 ascendingly
     counter = 0
+    new.forEach { _ in
+        let assertions = [
+            newReferences[safe: counter] != nil,
+            newReferences[safe: counter + 1] != nil,
+            newReferences[counter] == oldReferences[counter],
+            newReferences[counter + 1] == oldReferences[counter]
+        ]
+        
+        let allTrue = assertions.reduce(true) { $0 && $1 }
+        if allTrue {
+            newReferences[counter + 1] = .line(counter)
+        }
+    }
     newReferences.forEach {
         switch $0 {
         case let .line(lineNumber):
@@ -107,10 +120,10 @@ func diff<T: Collection>(old: T, new: T) -> [Edit<T>] where T.Iterator.Element: 
 }
 
 struct Entry {
-    let oldCounter: Int
-    let newCounter: Int
+    let occurrencesInOld: Int
+    let occurrencesInNew: Int
     
-    let oldIndicies: [Int]
+    let indicesOfOccurrencesInOld: [Int]
 }
 
 enum Reference {
@@ -138,7 +151,6 @@ extension Collection {
     }
 }
 
-// TODO: not sure if this should be called *tokenize*, I liked the sound of the word here
 // TODO: test reduce() instead of a for-loop. What are the perf implications?
 
 diff(old: str.characters, new: other.characters)
