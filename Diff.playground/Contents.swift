@@ -14,10 +14,12 @@ var other = "ello, playground"
 
  */
 func diff<T: Collection>(old: T, new: T) -> [Edit<T>] where T.Iterator.Element: Equatable & Hashable, T.IndexDistance == Int {
+    
     var symbolTable: [T.Iterator.Element: Entry] = [:]
-
-    /// step 1: Tokenize new collection
-    var newReferences = [Reference]()
+    var newReferences = [Reference<T>]()
+    var oldReferences = [Reference<T>]()
+    
+    
     var counter = 0
     new.forEach {
         switch symbolTable[$0] {
@@ -31,7 +33,7 @@ func diff<T: Collection>(old: T, new: T) -> [Edit<T>] where T.Iterator.Element: 
     }
     
     // step 2: Tokenize new collection
-    var oldReferences = [Reference]()
+    var oldReferences = [Reference<T>]()
     counter = 0
     old.forEach {
         switch symbolTable[$0] {
@@ -114,9 +116,8 @@ func diff<T: Collection>(old: T, new: T) -> [Edit<T>] where T.Iterator.Element: 
             return nil//new[safe: idx]
         }
     }
-    print(d)
     
-    return EditDistance(insertions: [], moves: [], deletions: [])
+    return []
 }
 
 struct Entry {
@@ -126,30 +127,6 @@ struct Entry {
     let indicesOfOccurrencesInOld: [Int]
 }
 
-enum Reference {
-    case pointer(Int)
-    case line(Int)
-}
-
-extension Reference: Equatable {
-    static func == (lhs: Reference, rhs: Reference) -> Bool {
-        switch (lhs, rhs) {
-        case (.pointer(let l), .pointer(let r)):
-            return l == r
-        case (.line(let l), .line(let r)):
-            return l == r
-        default:
-            return false
-        }
-    }
-}
-
-extension Collection {
-    /// Returns the element at the specified index iff it is within bounds, otherwise nil.
-    subscript (safe index: Index) -> Iterator.Element? {
-        return index >= startIndex && index < endIndex ? self[index] : nil
-    }
-}
 
 // TODO: test reduce() instead of a for-loop. What are the perf implications?
 
