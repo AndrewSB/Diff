@@ -13,7 +13,7 @@ var other = "ello, playground"
     2. If in each file immediately adjacent to a "found" line pair there are lines identical to each other, these lines must be the same line. Repeated application will "find" sequences of unchanged lines.
 
  */
-func diff<T: Collection>(old: T, new: T) -> EditDistance<T> where T.Iterator.Element: Equatable & Hashable, T.IndexDistance == Int {
+func diff<T: Collection>(old: T, new: T) -> [Edit<T>] where T.Iterator.Element: Equatable & Hashable, T.IndexDistance == Int {
     var symbolTable: [T.Iterator.Element: Entry] = [:]
 
     /// step 1: Tokenize new collection

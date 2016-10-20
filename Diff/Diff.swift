@@ -10,4 +10,8 @@ import Foundation
 
 open class Diff {
     
+    open class PaulHeckel {
+        
+    }
+    
 }
