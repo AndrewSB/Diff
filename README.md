@@ -1,5 +1,7 @@
 # Diff
-An efficient diffing engine in Swift
+An efficient diffing engine in Swift.
+
+WARNING: This implementation may be incomplete, see https://github.com/lxcid/ListDiff for a more full implementation
 
 ### Interesting resources
 1. [Data comparision on Wikipedia](https://en.wikipedia.org/wiki/Data_comparison)
